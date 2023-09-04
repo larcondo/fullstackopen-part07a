@@ -1,7 +1,8 @@
 import {
   BrowserRouter as Router,
   Routes, Route, Link,
-  useParams
+  useParams,
+  useNavigate
 } from 'react-router-dom'
 
 const Home = () => (
@@ -46,6 +47,33 @@ const Users = () => (
     </ul>
   </div>
 )
+
+const Login = (props) => {
+  const navigate = useNavigate()
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    props.onLogin('mluukkai')
+    navigate('/')
+  }
+
+  return(
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={onSubmit}>
+        <div>
+          username
+          <input />
+        </div>
+        <div>
+          password
+          <input type="password" />
+        </div>
+        <button type="submit">login</button>
+      </form>
+    </div>
+  )
+}
 
 function App() {
 
